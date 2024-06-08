@@ -1,4 +1,10 @@
-package com.ijb.beneficiarios_api.dtos;
+package com.ijb.beneficiarios_api.dtos.triagem;
 
-public record VisitaDTO() {
+import com.ijb.beneficiarios_api.dtos.beneficiario.BeneficiarioDTO;
+import com.ijb.beneficiarios_api.dtos.voluntario.VoluntarioDTO;
+
+import java.util.Date;
+import java.util.List;
+
+public record VisitaDTO(List<VoluntarioDTO> voluntarios, BeneficiarioDTO beneficiario, Date dataVisita) {
 }

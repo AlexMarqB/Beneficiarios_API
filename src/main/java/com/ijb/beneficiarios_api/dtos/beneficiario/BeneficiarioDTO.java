@@ -1,8 +1,6 @@
-package com.ijb.beneficiarios_api.dtos;
+package com.ijb.beneficiarios_api.dtos.beneficiario;
 
-import com.ijb.beneficiarios_api.enums.EstadoBeneficiarioEnum;
+import java.util.List;
 
-import java.util.Date;
-
-public record BeneficiarioDTO(String nomeResponsavel, String cpfResponsavel, Date dtNascimentoResponsavel, String endereço, String telefone, EstadoBeneficiarioEnum estadoAtividade) {
+public record BeneficiarioDTO(List<MembroFamiliarDTO> compFamiliar, String endereco, String telefone, String email) {
 }

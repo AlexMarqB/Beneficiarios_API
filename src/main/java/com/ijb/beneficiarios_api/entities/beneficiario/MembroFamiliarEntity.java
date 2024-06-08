@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "tb_membroFamiliar")
 @Getter
@@ -21,7 +23,10 @@ public class MembroFamiliarEntity {
     @JoinColumn(referencedColumnName = "codBeneficiario")
     private BeneficiarioEntity beneficiario;
     private String nome;
-    private int idade;
+    private String sobrenome;
+    private String cpf;
+    private String rg;
+    private Date dtNascimento;
     private String escolaridade;
     private float valorRenda;
     private String origemDaRenda;

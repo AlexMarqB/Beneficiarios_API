@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,12 +23,11 @@ public class BeneficiarioEntity extends Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codBeneficiario;
     private EstadoBeneficiarioEnum estadoAtividade = EstadoBeneficiarioEnum.PENDENTE;
-    private LocalDateTime dtCatdastro;
+    private LocalDateTime dtCadastro;
     private LocalDateTime dtAtualizacao;
-    private String nomeReponsavel;
-    private String rg;
     private String endereco;
     private String telefone;
+    private String email;
 
     @OneToMany(mappedBy = "beneficiario")
     private List<MembroFamiliarEntity> compFamiliar;
@@ -44,4 +44,14 @@ public class BeneficiarioEntity extends Usuario {
 
     @Column(name = "ativo", columnDefinition = "boolean default true")
     private boolean ativo;
+
+    @PostPersist
+    public void postPersist() {
+        dtCadastro = LocalDateTime.now();
+    }
+
+    @PostUpdate
+    public void postUpdate() {
+        dtAtualizacao = LocalDateTime.now();
+    }
 }

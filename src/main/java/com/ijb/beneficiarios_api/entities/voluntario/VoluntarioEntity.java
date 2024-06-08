@@ -24,9 +24,9 @@ public class VoluntarioEntity extends Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codVoluntario;
-    private String nome, sobrenome, email;
+    private String nome, sobrenome, email, telefone, cpf, rg;
     private Date dataNascimento;
-    private FuncoesVoluntarioEnum funcao;
+    private FuncoesVoluntarioEnum funcao = FuncoesVoluntarioEnum.NENHUM;
 
     @ManyToMany(mappedBy = "voluntarios", fetch = FetchType.LAZY)
     private List<VisitaEntity> visitas;

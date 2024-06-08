@@ -1,4 +1,4 @@
-package com.ijb.beneficiarios_api.dtos;
+package com.ijb.beneficiarios_api.dtos.voluntario;
 
 import java.util.Date;
 
