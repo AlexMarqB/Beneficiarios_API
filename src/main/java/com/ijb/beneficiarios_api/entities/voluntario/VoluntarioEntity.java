@@ -1,5 +1,6 @@
 package com.ijb.beneficiarios_api.entities.voluntario;
 
+import com.ijb.beneficiarios_api.entities.Usuario;
 import com.ijb.beneficiarios_api.enums.FuncoesVoluntarioEnum;
 import com.ijb.beneficiarios_api.entities.triagem.RelatorioVisitaEntity;
 import com.ijb.beneficiarios_api.entities.triagem.VisitaEntity;
@@ -18,7 +19,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VoluntarioEntity {
+public class VoluntarioEntity extends Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

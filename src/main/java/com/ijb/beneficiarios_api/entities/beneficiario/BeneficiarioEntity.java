@@ -1,5 +1,6 @@
 package com.ijb.beneficiarios_api.entities.beneficiario;
 
+import com.ijb.beneficiarios_api.entities.Usuario;
 import com.ijb.beneficiarios_api.enums.EstadoBeneficiarioEnum;
 import com.ijb.beneficiarios_api.entities.triagem.RelatorioVisitaEntity;
 import com.ijb.beneficiarios_api.entities.triagem.VisitaEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BeneficiarioEntity {
+public class BeneficiarioEntity extends Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
