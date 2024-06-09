@@ -25,10 +25,9 @@ public class MembroFamiliarEntity {
     private String nome;
     private String sobrenome;
     private String cpf;
-    private String rg;
     private Date dtNascimento;
     private String escolaridade;
     private float valorRenda;
-    private String origemDaRenda;
-    private String problemasDeSaúde;
+    private String origemRenda;
+    private String problemasSaude;
 }

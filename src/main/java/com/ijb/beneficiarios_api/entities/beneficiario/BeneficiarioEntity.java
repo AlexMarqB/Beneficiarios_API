@@ -8,7 +8,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,6 +21,10 @@ public class BeneficiarioEntity extends Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codBeneficiario;
+
+    @Column(nullable = false, unique = true)
+    private String cpf;
+
     private EstadoBeneficiarioEnum estadoAtividade = EstadoBeneficiarioEnum.PENDENTE;
     private LocalDateTime dtCadastro;
     private LocalDateTime dtAtualizacao;
