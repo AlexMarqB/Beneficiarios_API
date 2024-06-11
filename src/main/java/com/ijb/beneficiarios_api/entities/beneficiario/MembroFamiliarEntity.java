@@ -1,5 +1,6 @@
 package com.ijb.beneficiarios_api.entities.beneficiario;
 
+import com.ijb.beneficiarios_api.dtos.beneficiario.MembroFamiliarDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

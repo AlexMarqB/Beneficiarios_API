@@ -1,8 +1,9 @@
-package com.ijb.beneficiarios_api.util.fromDTO;
+package com.ijb.beneficiarios_api.util.fromDTO.beneficiario;
 
 import com.ijb.beneficiarios_api.dtos.beneficiario.BeneficiarioDTO;
 import com.ijb.beneficiarios_api.dtos.beneficiario.PreCadastroBeneficiarioDTO;
 import com.ijb.beneficiarios_api.entities.beneficiario.BeneficiarioEntity;
+import com.ijb.beneficiarios_api.entities.beneficiario.MembroFamiliarEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,19 +16,23 @@ public class ConversorBeneficiarioFromDTO {
     @Autowired
     ConversorMembroFamiliarFromDTO conversorMembroFamiliarFromDTO;
 
-    BeneficiarioEntity converterPreCadastro (PreCadastroBeneficiarioDTO preCadastroBeneficiarioDTO) {
+    public BeneficiarioEntity converterPreCadastro (PreCadastroBeneficiarioDTO preCadastroBeneficiarioDTO) {
         BeneficiarioEntity novoBeneficiario = new BeneficiarioEntity();
         novoBeneficiario.setCpf(preCadastroBeneficiarioDTO.familiar().cpf());
         novoBeneficiario.setEmail(preCadastroBeneficiarioDTO.email());
         novoBeneficiario.setTelefone(preCadastroBeneficiarioDTO.telefone());
         novoBeneficiario.setEndereco(preCadastroBeneficiarioDTO.endereco());
-        novoBeneficiario.getCompFamiliar().add(conversorMembroFamiliarFromDTO.converterMembroFamiliar(preCadastroBeneficiarioDTO.familiar()));
+        MembroFamiliarEntity membroFamiliarEntity = conversorMembroFamiliarFromDTO.converterMembroFamiliar(preCadastroBeneficiarioDTO.familiar());
+        //service.cadastrarMembroFamiliar
+        novoBeneficiario.getCompFamiliar().add(membroFamiliarEntity);
         return novoBeneficiario;
     }
 
-    BeneficiarioEntity converterBeneficiario (BeneficiarioDTO beneficiarioDTO) {
+    public BeneficiarioEntity converterBeneficiario (BeneficiarioDTO beneficiarioDTO) {
         BeneficiarioEntity novoBeneficiario = new BeneficiarioEntity();
-        novoBeneficiario.getCompFamiliar().addAll(conversorMembroFamiliarFromDTO.converterListaMembros(beneficiarioDTO.compFamiliar()));
+        List<MembroFamiliarEntity> membroFamiliarEntities = conversorMembroFamiliarFromDTO.converterListaMembros(beneficiarioDTO.compFamiliar());
+        //service.cadastrar
+        novoBeneficiario.getCompFamiliar().addAll(membroFamiliarEntities);
         novoBeneficiario.setCpf(novoBeneficiario.getCompFamiliar().get(0).getCpf());
         novoBeneficiario.setEndereco(beneficiarioDTO.endereco());
         novoBeneficiario.setTelefone(beneficiarioDTO.telefone());
@@ -35,7 +40,7 @@ public class ConversorBeneficiarioFromDTO {
         return novoBeneficiario;
     }
 
-    List<BeneficiarioEntity> converterListaBeneficiarios(List<BeneficiarioDTO> beneficiarioDTOs) {
+    public List<BeneficiarioEntity> converterListaBeneficiarios(List<BeneficiarioDTO> beneficiarioDTOs) {
         return beneficiarioDTOs.stream()
                 .map(this::converterBeneficiario)
                 .collect(Collectors.toList());

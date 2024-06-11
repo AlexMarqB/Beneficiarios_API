@@ -1,4 +1,4 @@
-package com.ijb.beneficiarios_api.util.fromDTO;
+package com.ijb.beneficiarios_api.util.fromDTO.beneficiario;
 
 import com.ijb.beneficiarios_api.dtos.beneficiario.MembroFamiliarDTO;
 import com.ijb.beneficiarios_api.entities.beneficiario.MembroFamiliarEntity;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Component
 public class ConversorMembroFamiliarFromDTO {
 
-     MembroFamiliarEntity converterMembroFamiliar(MembroFamiliarDTO membroFamiliarDTO) {
+     public MembroFamiliarEntity converterMembroFamiliar(MembroFamiliarDTO membroFamiliarDTO) {
         MembroFamiliarEntity novoMembro = new MembroFamiliarEntity();
         novoMembro.setNome(membroFamiliarDTO.nome());
         novoMembro.setSobrenome(membroFamiliarDTO.sobrenome());
