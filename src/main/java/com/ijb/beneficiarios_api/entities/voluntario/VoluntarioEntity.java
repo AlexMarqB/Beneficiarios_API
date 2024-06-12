@@ -28,10 +28,10 @@ public class VoluntarioEntity extends Usuario {
     private Date dataNascimento;
     private FuncoesVoluntarioEnum funcao = FuncoesVoluntarioEnum.NENHUM;
 
-    @ManyToMany(mappedBy = "voluntarios", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "voluntarios")
     private List<VisitaEntity> visitas;
 
-    @OneToMany(mappedBy = "voluntario", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "voluntario")
     private List<RelatorioVisitaEntity> relatorios;
 }
 

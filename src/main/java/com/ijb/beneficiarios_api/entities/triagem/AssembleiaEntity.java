@@ -20,13 +20,19 @@ import java.util.List;
 public class AssembleiaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codAssembleia;
+    private Integer codAssembleia;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+    @JoinTable(
+            name = "tb_participa_assembleia",
+            joinColumns = @JoinColumn(name = "codAssembleia"),
+            inverseJoinColumns = @JoinColumn(name = "codVoluntario")
+    )
     private List<VoluntarioEntity> voluntarios;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "assembleia")
     private List<BeneficiarioEntity> beneficiarios;
 
     private Date dataAssembleia;
+    private String decisao;
 }

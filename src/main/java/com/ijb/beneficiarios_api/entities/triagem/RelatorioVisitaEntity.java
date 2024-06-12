@@ -8,6 +8,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Blob;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
+
 @Entity
 @Table(name = "tb_relatorio_visita")
 @Setter
@@ -18,19 +23,20 @@ public class RelatorioVisitaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codRelatorio;
+    private Integer codRelatorio;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "codVisita", referencedColumnName = "codVisita")
+    @ManyToOne
+    @JoinColumn(name = "codVisita")
     private VisitaEntity visita;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "codBeneficiario", referencedColumnName = "codBeneficiario")
+    @ManyToOne
+    @JoinColumn(name = "codBeneficiario")
     private BeneficiarioEntity beneficiario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "codVoluntario", referencedColumnName = "codVoluntario")
+    @ManyToOne
+    @JoinColumn(name = "codVoluntario")
     private VoluntarioEntity voluntario;
 
-    private String descricao;
+    private Long descricao;
+    private String imagens;
 }

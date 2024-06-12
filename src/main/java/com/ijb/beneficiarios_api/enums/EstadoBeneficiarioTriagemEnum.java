@@ -1,7 +1,7 @@
 package com.ijb.beneficiarios_api.enums;
 
 
-public enum EstadoBeneficiarioEnum {
+public enum EstadoBeneficiarioTriagemEnum {
     PENDENTE("PENDENTE"),
     AGUARDANDO_VISITA("AGUARDANDO VISITA"),
     EM_ANDAMENTO("EM ANDAMENTO"),
@@ -12,7 +12,7 @@ public enum EstadoBeneficiarioEnum {
 
     private final String estado;
 
-    EstadoBeneficiarioEnum(String estado) {
+    EstadoBeneficiarioTriagemEnum(String estado) {
         this.estado = estado;
     }
 

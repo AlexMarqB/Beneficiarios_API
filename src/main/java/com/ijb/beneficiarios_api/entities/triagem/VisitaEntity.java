@@ -21,11 +21,11 @@ public class VisitaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long codVisita;
+    private Integer codVisita;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "visita_voluntarios",
+            name = "tb_visita_voluntarios",
             joinColumns = @JoinColumn(name = "codVisita"),
             inverseJoinColumns = @JoinColumn(name = "codVoluntario")
     )
@@ -36,6 +36,7 @@ public class VisitaEntity {
     private BeneficiarioEntity beneficiario;
 
     private Date dataVisita;
+    private boolean realizada;
 
     @OneToMany(mappedBy = "visita")
     private List<RelatorioVisitaEntity> relatorios;
