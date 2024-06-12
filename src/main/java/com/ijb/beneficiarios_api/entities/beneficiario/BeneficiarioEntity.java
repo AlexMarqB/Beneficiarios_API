@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class  BeneficiarioEntity extends Usuario {
+public class  BeneficiarioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

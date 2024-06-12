@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 
 @Getter
 public class Usuario {
-    protected LocalDateTime dataRegistro;
+    protected LocalDateTime dtCadastro;
 
     public Usuario() {
-        this.dataRegistro = LocalDateTime.now();
+        this.dtCadastro = LocalDateTime.now();
     }
 }

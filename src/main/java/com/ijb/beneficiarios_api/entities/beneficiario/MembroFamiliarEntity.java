@@ -1,5 +1,6 @@
 package com.ijb.beneficiarios_api.entities.beneficiario;
 
+import com.ijb.beneficiarios_api.entities.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MembroFamiliarEntity {
+public class MembroFamiliarEntity extends Usuario {
 
     @Id
     private String cpf;
@@ -37,11 +38,9 @@ public class MembroFamiliarEntity {
     private float renda;
     private String origemRenda;
     private String problemasSaude;
-    private LocalDateTime dtCadastro;
 
     @PostPersist
     public void postPersist() {
         dtCadastro = LocalDateTime.now();
-
     }
 }

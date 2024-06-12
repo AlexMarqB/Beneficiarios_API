@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -23,9 +24,15 @@ public class VoluntarioEntity extends Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codVoluntario;
-    private String nome, sobrenome, email, telefone, cpf, rg;
-    private Date dataNascimento;
+    private Integer codVoluntario;
+
+    private String nome;
+    private String sobrenome;
+    private String cpf;
+    private String email;
+    private String telefone;
+    private String senha;
+    private Date dtNascimento;
     private FuncoesVoluntarioEnum funcao = FuncoesVoluntarioEnum.NENHUM;
 
     @ManyToMany(mappedBy = "voluntarios")
@@ -33,5 +40,12 @@ public class VoluntarioEntity extends Usuario {
 
     @OneToMany(mappedBy = "voluntario")
     private List<RelatorioVisitaEntity> relatorios;
+
+    private LocalDateTime dtCadastro;
+
+    @PostPersist
+    public void postPersist() {
+        dtCadastro = LocalDateTime.now();
+    }
 }
 
