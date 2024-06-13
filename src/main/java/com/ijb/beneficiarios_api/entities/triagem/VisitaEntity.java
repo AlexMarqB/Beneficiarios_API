@@ -35,8 +35,8 @@ public class VisitaEntity {
     @JoinColumn(name = "codBeneficiario")
     private BeneficiarioEntity beneficiario;
 
-    private Date dataVisita;
-    private boolean realizada;
+    private Date dtVisita;
+    private boolean realizada = false;
 
     @OneToMany(mappedBy = "visita")
     private List<RelatorioVisitaEntity> relatorios;

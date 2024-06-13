@@ -21,7 +21,7 @@ public class  BeneficiarioEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codBeneficiario;
 
-    private String endereço;
+    private String endereco;
     private String tipoResidencia;
     private String necessidadeFamiliar;
     private EstadoBeneficiarioTriagemEnum estado= EstadoBeneficiarioTriagemEnum.PENDENTE;

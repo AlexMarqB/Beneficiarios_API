@@ -33,6 +33,6 @@ public class AssembleiaEntity {
     @OneToMany(mappedBy = "assembleia")
     private List<BeneficiarioEntity> beneficiarios;
 
-    private Date dataAssembleia;
+    private Date dtAssembleia;
     private String decisao;
 }

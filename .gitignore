@@ -1,4 +1,6 @@
 HELP.md
+CreationDTOS.txt
+Data DTOS.txt
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
