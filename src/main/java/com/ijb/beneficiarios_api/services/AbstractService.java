@@ -2,9 +2,9 @@ package com.ijb.beneficiarios_api.services;
 
 import java.util.List;
 
-public abstract class AbstractService<Entity, DTO, Id> {
+public abstract class AbstractService<Entity, CreateDTO, DTO, Id> {
 
-    public abstract Entity create(DTO dto);
+    public abstract Entity create(CreateDTO dto);
 
     public abstract Entity update(DTO dto);
 
@@ -12,5 +12,5 @@ public abstract class AbstractService<Entity, DTO, Id> {
 
     public abstract List<Entity> getAll();
 
-    public abstract Entity deleteById(Id id);
+    public abstract boolean deleteById(Id id);
 }

@@ -21,15 +21,10 @@ public class BeneficiarioConverter {
     @Autowired
     MembroFamiliarConverter membroFamiliarConverter;
 
-    public BeneficiarioEntity converterCreateBeneficiarioDTO(CreateBeneficiarioDTO dto) {
+    public BeneficiarioEntity converterCreateBeneficiarioDTO(CreateBeneficiarioDTO dto, List<MembroFamiliarEntity> membroFamiliarEntities) {
         BeneficiarioEntity entity = new BeneficiarioEntity();
         BeanUtils.copyProperties(dto, entity, "compFamiliar");
-        if (dto.compFamiliar() != null) {
-            List<MembroFamiliarEntity> compFamiliar = dto.compFamiliar().stream()
-                    .map(membroFamiliarConverter::converterCreateMembroFamiliarDTO)
-                    .collect(Collectors.toList());
-            entity.setCompFamiliar(compFamiliar);
-        }
+        entity.setCompFamiliar(membroFamiliarEntities);
         return entity;
     }
 
