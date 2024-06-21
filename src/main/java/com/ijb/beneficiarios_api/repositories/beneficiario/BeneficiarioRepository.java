@@ -11,4 +11,6 @@ import java.util.Optional;
 @Repository
 public interface BeneficiarioRepository extends JpaRepository<BeneficiarioEntity, Integer> {
     Optional<List<BeneficiarioEntity>> findAllByEstado(EstadoBeneficiarioTriagemEnum estado);
+
+    BeneficiarioEntity findFirstByMembrosFamiliares_Cpf(String cpf);
 }

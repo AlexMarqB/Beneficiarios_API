@@ -68,6 +68,18 @@ public class BeneficiarioService extends AbstractService<BeneficiarioEntity, Cre
         }
     }
 
+    public BeneficiarioEntity getByCpf(String cpf) {
+        try {
+            BeneficiarioEntity foundEntity = repository.findFirstByMembrosFamiliares_Cpf(cpf);
+            if (foundEntity == null) {
+                throw new InternalException("Beneficiario não encontrado!");
+            }
+            return foundEntity;
+        } catch (Exception e) {
+            throw new InternalException(e.getMessage());
+        }
+    }
+
     @Override
     public List<BeneficiarioEntity> getAll() {
         return repository.findAll();
