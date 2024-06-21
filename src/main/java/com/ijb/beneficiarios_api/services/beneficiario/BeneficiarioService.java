@@ -4,6 +4,7 @@ import com.ijb.beneficiarios_api.dtos.creationDTOS.beneficiario.CreateBeneficiar
 import com.ijb.beneficiarios_api.dtos.dataDTOS.beneficiario.BeneficiarioDTO;
 import com.ijb.beneficiarios_api.entities.beneficiario.BeneficiarioEntity;
 import com.ijb.beneficiarios_api.entities.beneficiario.MembroFamiliarEntity;
+import com.ijb.beneficiarios_api.enums.EstadoBeneficiarioTriagemEnum;
 import com.ijb.beneficiarios_api.repositories.beneficiario.BeneficiarioRepository;
 import com.ijb.beneficiarios_api.services.AbstractService;
 import com.ijb.beneficiarios_api.utils.converters.beneficiario.BeneficiarioConverter;
@@ -70,6 +71,14 @@ public class BeneficiarioService extends AbstractService<BeneficiarioEntity, Cre
     @Override
     public List<BeneficiarioEntity> getAll() {
         return repository.findAll();
+    }
+
+    public List<BeneficiarioEntity> getAllByEstado(EstadoBeneficiarioTriagemEnum estado) {
+        return repository.findAllByEstado(estado).orElse(null);
+    }
+
+    public void notificarAttDados() {
+        //enviar email ou sms para o beenficiario
     }
 
     @Override
