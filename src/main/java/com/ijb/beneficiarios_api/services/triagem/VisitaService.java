@@ -2,16 +2,17 @@ package com.ijb.beneficiarios_api.services.triagem;
 
 import com.ijb.beneficiarios_api.dtos.creationDTOS.triagem.CreateVisitaDTO;
 import com.ijb.beneficiarios_api.dtos.dataDTOS.triagem.VisitaDTO;
+import com.ijb.beneficiarios_api.entities.beneficiario.BeneficiarioEntity;
 import com.ijb.beneficiarios_api.entities.triagem.VisitaEntity;
 import com.ijb.beneficiarios_api.entities.voluntario.VoluntarioEntity;
 import com.ijb.beneficiarios_api.repositories.triagem.VisitaRepository;
 import com.ijb.beneficiarios_api.services.AbstractService;
+import com.ijb.beneficiarios_api.services.beneficiario.BeneficiarioService;
 import com.ijb.beneficiarios_api.services.voluntario.VoluntarioService;
 import com.ijb.beneficiarios_api.utils.converters.triagem.VisitaConverter;
 import org.apache.logging.log4j.util.InternalException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +30,8 @@ public class VisitaService extends AbstractService<VisitaEntity, CreateVisitaDTO
     @Autowired
     private VoluntarioService voluntarioService;
 
+    @Autowired
+    private BeneficiarioService beneficiarioService;
 
     @Override
     public VisitaEntity create(CreateVisitaDTO createVisitaDTO) {
@@ -36,9 +39,8 @@ public class VisitaService extends AbstractService<VisitaEntity, CreateVisitaDTO
             List<VoluntarioEntity> voluntarios = createVisitaDTO.voluntarios().stream()
                     .map(item -> voluntarioService.getById(item.getCodVoluntario()))
                     .collect(Collectors.toList());
-            VisitaEntity newVisita = new VisitaEntity();
-            BeanUtils.copyProperties(createVisitaDTO, newVisita, "voluntarios");
-            newVisita.setVoluntarios(voluntarios);
+            BeneficiarioEntity beneficiario = beneficiarioService.getById(createVisitaDTO.beneficiario().getCodBeneficiario());
+            VisitaEntity newVisita = visitaConverter.converterCreateVisitaDTO(createVisitaDTO, beneficiario , voluntarios);
             return repository.save(newVisita);
         } catch (Exception e) {
             throw new InternalException(e.getMessage());
@@ -74,6 +76,10 @@ public class VisitaService extends AbstractService<VisitaEntity, CreateVisitaDTO
         } catch (Exception e) {
             throw new InternalException(e.getMessage());
         }
+    }
+
+    public List<VisitaEntity> getAllByRealizada(boolean realizada) {
+        return repository.findAllByRealizada(realizada);
     }
 
     @Override

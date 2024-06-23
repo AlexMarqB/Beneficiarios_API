@@ -2,6 +2,7 @@ package com.ijb.beneficiarios_api.utils.converters.beneficiario;
 
 import com.ijb.beneficiarios_api.dtos.creationDTOS.beneficiario.CreateMembroFamiliarDTO;
 import com.ijb.beneficiarios_api.dtos.dataDTOS.beneficiario.MembroFamiliarDTO;
+import com.ijb.beneficiarios_api.entities.beneficiario.BeneficiarioEntity;
 import com.ijb.beneficiarios_api.entities.beneficiario.MembroFamiliarEntity;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -15,9 +16,11 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class MembroFamiliarConverter {
 
-    public MembroFamiliarEntity converterCreateMembroFamiliarDTO(CreateMembroFamiliarDTO dto) {
+    public MembroFamiliarEntity converterCreateMembroFamiliarDTO(CreateMembroFamiliarDTO dto, BeneficiarioEntity beneficiario) {
         MembroFamiliarEntity entity = new MembroFamiliarEntity();
-        BeanUtils.copyProperties(dto, entity);
+        if(beneficiario == null) return null;
+        BeanUtils.copyProperties(dto, entity, "beneficiario");
+        entity.setBeneficiario(beneficiario);
         return entity;
     }
 

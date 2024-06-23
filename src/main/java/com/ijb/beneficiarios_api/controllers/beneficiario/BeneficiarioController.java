@@ -44,7 +44,7 @@ public class BeneficiarioController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity listarBeneficiarios() {
         try {
             List<BeneficiarioDTO> beneficiarios = beneficiarioConverter.converterListBeneficiarioEntity(beneficiarioService.getAll());
@@ -68,7 +68,7 @@ public class BeneficiarioController {
     public ResponseEntity buscarBeneficiarioPorCpf(@PathVariable String cpf) {
         try {
             BeneficiarioDTO beneficiario = beneficiarioConverter.converterBeneficiarioEntity(beneficiarioService.getByCpf(cpf));
-            if(beneficiario == null) return ResponseEntity.badRequest().body("Não foi possivel encontrar o beneficiario!");
+            if(beneficiario == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi possivel encontrar o beneficiario!");
             return ResponseEntity.status(HttpStatus.OK).body(beneficiario);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -79,7 +79,7 @@ public class BeneficiarioController {
     public ResponseEntity atualizarBeneficiario(@PathVariable Integer id, @RequestBody @Validated BeneficiarioDTO dto) {
         try {
             BeneficiarioDTO beneficiario = beneficiarioConverter.converterBeneficiarioEntity(beneficiarioService.getById(id));
-            if(beneficiario == null) return ResponseEntity.badRequest().body("Não foi possivel encontrar o beneficiario!");
+            if(beneficiario == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi possivel encontrar o beneficiario!");
             return ResponseEntity.status(HttpStatus.OK).body(beneficiarioConverter.converterBeneficiarioEntity(beneficiarioService.update(dto)));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -90,7 +90,7 @@ public class BeneficiarioController {
     public ResponseEntity excluirBeneficiario(@PathVariable Integer id) {
         try {
             BeneficiarioDTO beneficiario = beneficiarioConverter.converterBeneficiarioEntity(beneficiarioService.getById(id));
-            if(beneficiario == null) return ResponseEntity.badRequest().body("Não foi possivel encontrar o beneficiario!");
+            if(beneficiario == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi possivel encontrar o beneficiario!");
             boolean deletado = beneficiarioService.deleteById(id);
             if(deletado) {
                 return ResponseEntity.status(HttpStatus.OK).body("Beneficiario removido com sucesso!");

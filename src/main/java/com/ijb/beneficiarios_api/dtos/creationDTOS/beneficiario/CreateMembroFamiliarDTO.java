@@ -1,6 +1,7 @@
 package com.ijb.beneficiarios_api.dtos.creationDTOS.beneficiario;
 
 public record CreateMembroFamiliarDTO(String cpf,
+                                      Integer codBeneficiario,
                                       String rg,
                                       String nome,
                                       String sobrenome,

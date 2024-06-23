@@ -27,6 +27,12 @@ public class VoluntarioConverter {
         return dto;
     }
 
+    public List<VoluntarioDTO> converterListVoluntarioEntity(List<VoluntarioEntity> entities) {
+        return entities.stream()
+                .map(this::converterVoluntarioEntity)
+                .collect(Collectors.toList());
+    }
+
     public List<VoluntarioDTO> converterListaVoluntarioEntity(List<VoluntarioEntity> entities) {
         return entities.stream()
                 .map(this::converterVoluntarioEntity)
